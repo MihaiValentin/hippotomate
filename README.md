@@ -11,7 +11,7 @@ Hippotomate is a tool for Selenium that will provide valuable insights in your a
 
 Hippotomate is currently a proof of concept and its purpose is to validate the usefulness of such tools for QA engineers. Therefore, except some rough edges :)
 
-For information on how to use, features and details, go to [www.hippotomate.com](http://www.hippotomate.com)
+For more information, check [How to use guide](HOW-TO-USE.md) and [www.hippotomate.com](http://www.hippotomate.com)
 
 ## How to develop Hippotomate
 
