@@ -1,4 +1,4 @@
-# Hippotomate
+# Hippotomate &middot; ![CircleCI Status](https://circleci.com/gh/MihaiValentin/hippotomate.svg?style=shield&circle-token=3e97efa241fd2343b3a3317c197cfc7b63f39c9a)
 
 Hippotomate is a tool for Selenium that will provide valuable insights in your automated tests and present them in a meaningful and concise way.
 
