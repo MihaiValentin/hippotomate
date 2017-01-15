@@ -1,0 +1,298 @@
+@success: #1FEA1F;
+@failure: #FF3131;
+@progress: grey;
+@own: #00E4FF;
+
+@import 'font.less';
+@import 'intro.less';
+
+body {
+  font-family: Lato;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+input {
+  font-family: Lato;
+  border: 1px solid #aaa;
+  padding: 4px;
+}
+
+.hptm-mui-fix > div {
+  width: auto !important;
+}
+
+.topbar {
+  background: #F7F7F7;
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  align-items: center;
+  //justify-content: center;
+
+  .topbar-logo {
+    flex-grow: 0;
+    height: 40px;
+    img {
+      height: 40px;
+    }
+  }
+
+  .topbar-title {
+    flex-grow: 0;
+    padding-left: 12px;
+    h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+
+  .topbar-view {
+    flex-grow: 1;
+    width: 150px;
+  }
+
+  .topbar-settings {
+  }
+}
+
+.specialinfo-container {
+  border: 1px solid #e9e9e9;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.empty-container {
+  width: 350px;
+  height: 350px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -350px/2;
+  margin-left: -350px/2;
+
+  img {
+    width: 100px;
+    opacity: 0.4;
+  }
+
+  h1 {
+    margin-bottom: 35px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+.request-state(@c) {
+  border-left: 5px solid @c;
+
+  button {
+    background: #fff;
+    border: 1px solid @c;
+    color: @c;
+  }
+
+  .extra a {
+    background: @c;
+    border: darken(@c, 25%);
+    color: #fff;
+  }
+}
+
+.code-success {
+  color: @success;
+}
+.code-failure {
+  color: @failure;
+}
+
+.breakpoint-container {
+  padding: 15px;
+}
+
+.session-container {
+  margin-bottom: 20px;
+  padding: 20px;
+
+  button {
+    background: transparent;
+    border: 0;
+  }
+
+  .session-header {
+    display: flex;
+    align-items: center;
+
+    .icon img {
+      border-radius: 50%;
+    }
+
+    .text {
+      flex-grow: 1;
+      margin-left: 12px;
+    }
+  }
+
+  .session-content {
+    font-size: 14px;
+
+    >ul>li:first-child {
+      margin-top: 17px;
+    }
+  }
+}
+
+.requests {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    margin: 2px auto;
+    padding: 6px;
+    position: relative;
+
+    &.sp-success { .request-state(@success); }
+    &.sp-failure { .request-state(@failure); }
+    &.sp-progress { .request-state(@progress); }
+    &.sp-own { .request-state(@own); }
+
+    &:nth-child(2n+1) {
+      background: #F9F9F9;
+
+      small {
+        background: #fff;
+      }
+    }
+
+    .request-wrapper {
+      @buttonSize: 17px;
+      @minRequestHeight: 23px;
+
+      display: flex;
+      align-items: flex-start;
+
+      button {
+        box-sizing: content-box;
+        border-radius: 3px;
+        width: @buttonSize;
+        height: @buttonSize;
+        padding: 0;
+      }
+
+      .expander {
+        width: @buttonSize;
+        height: @buttonSize;
+        position: relative;
+      }
+
+      .expander, .extra {
+        padding-top: (@minRequestHeight - @buttonSize) / 2 - 1;
+      }
+
+      .extra a {
+        width: @buttonSize;
+        height: @buttonSize;
+        border-radius: 3px;
+        text-decoration: none;
+        text-align: center;
+        &:before {
+          line-height: @buttonSize + 1;
+        }
+      }
+
+      .main {
+        flex-grow: 1;
+        margin-left: 8px;
+        min-height: @minRequestHeight;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        hr {
+          border-top: 1px solid #ddd;
+          border-bottom: 0;
+          border-left: 0;
+          border-right: 0;
+        }
+
+        small {
+          border: 1px solid #e9e9e9;
+          padding: 3px;
+          font-family: Courier;
+        }
+      }
+
+      &.expanded-yes {
+        align-items: flex-start;
+
+        .extra {
+          padding: 8px 0 8px 8px;
+
+          a {
+            width: 80px;
+            height: auto;
+            padding: 7px;
+            display: block;
+            margin-bottom: 7px;
+            >div {
+              font-family:sans-serif;
+            }
+          }
+        }
+
+        .main {
+          display: block;
+          padding-top: 4px;
+          padding-bottom: 5px;
+
+          small {
+            display: block;
+            word-wrap: break-word;
+            margin-top: 3px;
+          }
+        }
+      }
+      &.expanded-no {
+        .request-line {
+          display: flex;
+          align-items: center;
+
+          small {
+            margin-left: 10px;
+            text-overflow: ellipsis;
+            max-width: 300px;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+  }
+}

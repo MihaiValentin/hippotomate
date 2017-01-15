@@ -1,0 +1,144 @@
+.intro-screen {
+
+  @maxWidth: 650px;
+
+  .intro-container {
+    @introPadding: 50px 50px 10px 50px;
+    max-width: @maxWidth;
+    margin: 0 auto;
+
+    > div {
+      margin: 0 auto;
+    }
+
+    padding: @introPadding;
+
+    .intro-statement {
+      text-align: center;
+      font-size: 18px;
+      margin: 30px auto 50px auto;
+      padding: 0 60px;
+    }
+
+    .intro-draw {
+      display: flex;
+
+      .intro-col {
+        &.intro-col-1, &.intro-col-5 {
+          img {
+            opacity: 0.4;
+          }
+        }
+
+        &.intro-col-1, &.intro-col-2, &.intro-col-4, &.intro-col-5 {
+          img, .intro-text {
+            max-width: 96px;
+          }
+        }
+
+        &.intro-col-2, &.intro-col-4 {
+          flex-grow: 1;
+
+          img {
+            display: block;
+            margin: 53px auto 0 auto;
+          }
+        }
+
+        &.intro-col-3 {
+          img {
+            max-width: 196px;
+            display: block;
+            margin: 20px auto 0 auto;
+          }
+          .intro-text {
+            font-weight: bold;
+          }
+        }
+
+        .intro-pic-container {
+          height: 128px;
+        }
+
+        .intro-text {
+          text-align: center;
+          font-size: 18px;
+          margin-top: 10px;
+          color: #555;
+        }
+      }
+    }
+  }
+
+  .intro-stripe-container {
+    color: #555;
+    background: #F5F3F5;
+    border-top: 1px dotted #ddd;
+    margin: 20px auto 0 auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .intro-stripe {
+      @extraSpaceToBeContinous: 50px;
+
+      margin: 0 auto;
+      max-width: @maxWidth;
+      display: flex;
+      justify-content: space-between;
+      padding: 18px @extraSpaceToBeContinous 18px @extraSpaceToBeContinous;
+
+      .intro-stripe-col {
+
+        &.intro-stripe-col-1 {
+          flex-grow: 2;
+        }
+
+        &.intro-stripe-col-3 {
+          padding-left: 18px;
+        }
+
+        .intro-field-listen-port {
+          width: 60px;
+        }
+        .intro-field-address {
+          width: 135px;
+        }
+        .intro-field-port {
+          width: 60px;
+        }
+        .intro-field-path {
+          width: 78px;
+        }
+      }
+    }
+  }
+}
+
+.license-text {
+  > ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: item;
+
+    > li {
+      padding: 15px;
+      border-top: 1px solid #dedede;
+
+      p {
+        display: inline;
+      }
+
+      &:nth-child(2n+1) {
+        background: #f9f9f9;
+      }
+
+      &:before {
+        content: counters(item, ".") ". ";
+        counter-increment: item;
+      }
+    }
+  }
+}
