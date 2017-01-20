@@ -8,8 +8,8 @@ export default function JSONPreview(json, mini, expandJsonLikeStrings) {
         } else if (_.isString(value)) {
             if (expandJsonLikeStrings) {
                 let obj = MaybeJSON(value);
-                if (obj) {
-                    result[key] = JSONPreview(obj, mini, expandJsonLikeStrings)
+                if (_.isObject(obj)) {
+                    result[key] = JSONPreview(obj, mini, expandJsonLikeStrings);
                     return result;
                 }
             }
