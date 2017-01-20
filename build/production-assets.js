@@ -27,6 +27,7 @@ del('target').then(() => {
             fs.copySync("index.html", "target/production/index.html");
             fs.copySync("package.json", "target/production/package.json");
             fs.copySync("app/product/img", "target/production/app/product/img");
+            fs.copySync("app/product/browsers-logo", "target/production/app/product/browsers-logo");
 
             console.log('Building server-side assets ...');
             webpack({
