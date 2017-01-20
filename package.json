@@ -1,6 +1,6 @@
 {
   "name": "Hippotomate",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-alpha",
   "description": "Develop and debug your automated tests faster",
   "main": "main.js",
   "scripts": {
@@ -17,8 +17,12 @@
     "build-dev": "cross-env NODE_ENV=development webpack --config build/webpack.config.development.js --progress --profile --colors",
     "start2": "cross-env NODE_ENV=production electron ./",
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron ./main.js",
-    "build-package-current": "cross-env NODE_ENV=production node build/production-assets.js && cross-env NODE_ENV=production node node_modules/electron-packager/cli.js target/production hippotomate --out=target/platforms --asar",
-    "build-package-all": "cross-env NODE_ENV=production node build/production-assets.js && cross-env NODE_ENV=production node node_modules/electron-packager/cli.js target/production hippotomate --out=target/platforms --asar --platform=all",
+    "build-production-assets": "cross-env NODE_ENV=production node build/production-assets.js",
+    "build-package-current": "npm run build-production-assets && cross-env NODE_ENV=production node node_modules/electron-packager/cli.js target/production hippotomate --out=target/platforms --asar",
+    "build-package-platform:win32": "cross-env NODE_ENV=production node node_modules/electron-packager/cli.js target/production hippotomate --out=target/platforms --overwrite --asar --platform=win32 --arch=ia32 --icon=app/product/img/product.ico --version-string.CompanyName=Hippotomate --version-string.FileDescription=Hippotomate --version-string.ProductName=\"Hippotomate\"",
+    "build-package-platform:win64": "cross-env NODE_ENV=production node node_modules/electron-packager/cli.js target/production hippotomate --out=target/platforms --overwrite --asar --platform=win32 --arch=x64 --icon=app/product/img/product.ico --version-string.CompanyName=Hippotomate --version-string.FileDescription=Hippotomate --version-string.ProductName=\"Hippotomate\"",
+    "build-package-platform:linux": "cross-env NODE_ENV=production node node_modules/electron-packager/cli.js target/production hippotomate --out=target/platforms --overwrite --asar --platform=linux --arch=x64",
+    "build-package-all": "npm run build-production-assets && npm-run-all build-package-platform:*",
     "postinstall": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
     "dev": "concurrently --kill-others \"npm run hot-server\" \"npm run start-hot\""
   },
